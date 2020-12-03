@@ -1,0 +1,71 @@
+# Misc.
+ChangeLog
+INSTALL
+
+# Binaries
+src/http-launch
+*.o
+*.lo
+*.so
+*.a
+*.la
+a.out
+*.i
+*.ii
+*.e
+/http-launch-*
+
+# Autotools-generated files: AC_CONFIG_FILES
+Makefile
+
+# Autotools-generated files: other
+/build-aux/
+.deps/
+.libs/
+Makefile.in
+aclocal.m4
+autom4te.cache/
+compile
+config.guess
+config.log
+config.status
+config.sub
+configure
+depcomp
+install-sh
+libtool
+ltmain.sh
+m4/
+/test-driver
+missing
+/config.h
+stamp-h
+stamp-h.in
+stamp-h1
+confdefs.h*
+conftest*
+.dirstamp
+/config.cache
+confcache
+/conf*/
+*.stamp*
+
+# FUSE temporary directory, in case we sshfs-mount this.
+.fuse*
+
+/config.h.in
+  # An Autotools-generated file, at present.  If we ever want to edit
+  # config.h.in manually, we will need to remove it from .gitignore and
+  # check it in.
+
+# Convenience files
+.gdb_history
+tags
+
+# Editor and other backup files
+~*
+*~
+*.swp
+*.bak
+*.orig
+*.uncrustify
