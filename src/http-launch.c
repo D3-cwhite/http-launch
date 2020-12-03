@@ -242,10 +242,10 @@ on_read_bytes (GPollableInputStream * stream, Client * client)
         client_message (client, (gchar *) client->current_message->data, len);
         g_byte_array_remove_range (client->current_message, 0, len);
         tmp = client->current_message->data;
-	tmp_len = client->current_message->len;
+        tmp_len = client->current_message->len;
       } else {
         tmp++;
-	tmp_len--;
+        tmp_len--;
       }
     }
 
@@ -381,8 +381,20 @@ static void on_stream_caps_changed (GObject *obj, GParamSpec *pspec,
   GList *l;
 
   src_pad = (GstPad *) obj;
+  if(src_pad == NULL) {
+    return;
+  }
+
   src_caps = gst_pad_get_current_caps (src_pad);
+  if(src_caps == NULL) {
+      return;
+  }
+
   gstrc = gst_caps_get_structure (src_caps, 0);
+  if(gstrc == NULL) {
+    gst_caps_unref (src_caps);
+    return;
+  }
 
   /*
    * Include a Content-type header in the case we know the mime
@@ -403,7 +415,7 @@ static void on_stream_caps_changed (GObject *obj, GParamSpec *pspec,
       {
         const gchar *boundary = gst_structure_get_string(gstrc, "boundary");
         content_type = g_strdup_printf ("Content-Type: "
-	          "multipart/x-mixed-replace;boundary=--%s\r\n", boundary);
+                  "multipart/x-mixed-replace;boundary=--%s\r\n", boundary);
       }
       else
       {
